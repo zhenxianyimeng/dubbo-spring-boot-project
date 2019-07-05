@@ -70,7 +70,9 @@ public class DubboAutoConfiguration {
     @Bean
     public ServiceAnnotationBeanPostProcessor serviceAnnotationBeanPostProcessor(
             @Qualifier(BASE_PACKAGES_PROPERTY_RESOLVER_BEAN_NAME) PropertyResolver propertyResolver) {
+        //获取 dubbo.scan.base-package属性
         Set<String> packagesToScan = propertyResolver.getProperty(BASE_PACKAGES_PROPERTY_NAME, Set.class, emptySet());
+        //获取包路径下的类，然后ServiceAnnotationBeanPostProcessor会加载@Service的类到bean容器中
         return new ServiceAnnotationBeanPostProcessor(packagesToScan);
     }
 
@@ -93,6 +95,16 @@ public class DubboAutoConfiguration {
      */
     @Import(DubboConfigConfiguration.Single.class)
     protected static class SingleDubboConfigConfiguration {
+        /**
+         * 引入单个dubbo配置属性
+         * dubbo.application
+         * dubbo.module
+         * dubbo.registry
+         * dubbo.protocol
+         * dubbo.monitor
+         * dubbo.provider
+         * dubbo.consumer
+         */
     }
 
     /**
@@ -104,6 +116,16 @@ public class DubboAutoConfiguration {
     @ConditionalOnProperty(prefix = DUBBO_CONFIG_PREFIX, name = MULTIPLE_CONFIG_PROPERTY_NAME, matchIfMissing = true)
     @Import(DubboConfigConfiguration.Multiple.class)
     protected static class MultipleDubboConfigConfiguration {
+        /**
+         * 引入多个dubbo配置属性
+         * dubbo.applications
+         * dubbo.modules
+         * dubbo.registries
+         * dubbo.protocols
+         * dubbo.monitors
+         * dubbo.providers
+         * dubbo.consumers
+         */
     }
 
 }

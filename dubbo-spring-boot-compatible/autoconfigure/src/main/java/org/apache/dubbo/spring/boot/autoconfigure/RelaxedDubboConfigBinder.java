@@ -33,6 +33,12 @@ import static org.apache.dubbo.config.spring.util.PropertySourcesUtils.getSubPro
  */
 class RelaxedDubboConfigBinder extends AbstractDubboConfigBinder {
 
+    /**
+     * 继承 AbstractDubboConfigBinder, 负责将springboot 属性注入到 dubbo abstractconfig对象
+     * @param prefix
+     * @param dubboConfig
+     * @param <C>
+     */
     @Override
     public <C extends AbstractConfig> void bind(String prefix, C dubboConfig) {
         RelaxedDataBinder relaxedDataBinder = new RelaxedDataBinder(dubboConfig);

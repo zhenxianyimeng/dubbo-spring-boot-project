@@ -42,6 +42,16 @@ import static org.apache.dubbo.spring.boot.util.DubboUtils.SPRING_APPLICATION_NA
  * {@link SpringApplication#setDefaultProperties(Properties) Spring Boot default properties} for Dubbo
  * as late as possible before {@link ConfigurableApplicationContext#refresh() application context refresh}.
  */
+
+/**
+ * dubbo一些默认属性的自动生成类
+ * # 直接复用 spring.application.name
+ * dubbo.application.name=
+ * # 默认为 true
+ * dubbo.config.multiple=true
+ * # 默认为 false
+ * dubbo.config.qos-enable=false
+ */
 public class DubboDefaultPropertiesEnvironmentPostProcessor implements EnvironmentPostProcessor, Ordered {
 
     /**
